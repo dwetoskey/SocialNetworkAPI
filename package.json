@@ -1,6 +1,11 @@
 {
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
   "dependencies": {
     "express": "^4.17.3",
+    "moment": "^2.29.2",
     "mongoose": "^6.2.11"
   }
 }
