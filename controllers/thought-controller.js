@@ -3,11 +3,11 @@ const { User, Thought } = require('../models');
 const thoughtController = {
     getAllThoughts(req, res) {
         Thought.find({})
-        .populate({
-            path: 'user',
-            select: '-__v'
-        })
-        .select('-__v')
+        // .populate({
+        //     path: 'user',
+        //     select: '-__v'
+        // })
+        // .select('-__v')
         .sort({ _id: -1 })
         .then(dbThoughtData => res.json(dbThoughtData))
         .catch(err => {
@@ -30,12 +30,13 @@ const thoughtController = {
         });
     },
 
-    createThought({ params, body }, res) {
+    createThought({ body }, res) {
         Thought.create(body)
-        .then(({ _id }) => {
+        .then(({ dbThoughtData }) => {
+            console.log(body.userId, "=======================", dbThoughtData._id);
             return User.findOneAndUpdate(
-                { userName: body.userName },
-                { $push: { thoughts: _id }},
+                { _id: body.userId },
+                { $push: { thoughts: dbThoughtData._id }},
                 { new: true }
             );
         })

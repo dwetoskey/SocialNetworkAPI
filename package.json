@@ -1,11 +1,15 @@
 {
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "whatever": "nodemon server.js"
   },
   "dependencies": {
     "express": "^4.17.3",
     "moment": "^2.29.2",
     "mongoose": "^6.2.11"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
